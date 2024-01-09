@@ -5,14 +5,12 @@ from urllib.parse import quote_plus, urlencode
 
 app = Flask(__name__)
 
-ip_keycloak = '192.168.1.136'
-
 appConf = {
     "OAUTH2_CLIENT_ID": "test_web_app",
-    "OAUTH2_CLIENT_SECRET": "mLLv5U6LXkxeSktiJOLodRStR9FIVhVH",
-    "OAUTH2_ISSUER": f"http://{ip_keycloak}:8080/realms/myorg",
+    "OAUTH2_CLIENT_SECRET": "RMBmwucvPPcLRSfKx2XLI4Lv8KiRQ7dE",
+    "OAUTH2_ISSUER": "http://localhost:8080/realms/myorg",
     "FLASK_SECRET": "ALongRandomlyGeneratedString",
-    "FLASK_PORT": 80
+    "FLASK_PORT": 3000
 }
 
 app.secret_key = appConf.get("FLASK_SECRET")
