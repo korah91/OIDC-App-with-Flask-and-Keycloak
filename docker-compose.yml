@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - '80:3000'
+    network_mode: host
   keycloak:
     image: quay.io/keycloak/keycloak:23.0.4
     command: start-dev --import-realm
@@ -17,4 +18,4 @@ services:
       - ./Keycloak:/opt/keycloak/data/import
     ports:
       - "8080:8080"
-    
+    network_mode: host
