@@ -75,5 +75,15 @@ def callback():
     session["user"] = token
     return redirect(url_for("home"))
     
+
+@app.route('/login_okta')
+def login():
+    # check if session already present
+    if "user" in session:
+        abort(404)
+    return oauth.myApp.authorize_redirect(redirect_uri=appConf.get("OAUTH2_ISSUER_INTERNAL") + '/protocol/openid-connect/auth')
+
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000, debug=True)
