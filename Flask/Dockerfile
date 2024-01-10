@@ -10,6 +10,10 @@ COPY requirements.txt .
 # Install any dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Instalo curl para poder hacer ping al keycloak
+#RUN apt update
+#RUN apt install curl
+
 # Copy the content of the local src directory to the working directory
 COPY . .
 

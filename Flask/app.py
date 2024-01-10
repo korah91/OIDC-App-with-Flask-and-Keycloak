@@ -5,13 +5,19 @@ from urllib.parse import quote_plus, urlencode
 
 app = Flask(__name__)
 
-#ip_keycloak = '192.168.1.136'
+ip_keycloak_internal = 'keycloak'
+ip_keycloak_external = 'localhost'
 ip_keycloak = 'keycloak'
 
 appConf = {
     "OAUTH2_CLIENT_ID": "test_web_app",
     "OAUTH2_CLIENT_SECRET": "FXv2ugPyXsF2hN46EoAL3bmvx5MiUdHf",
-    "OAUTH2_ISSUER": f"http://{ip_keycloak}:8080/realms/myorg",
+    # Uso dos issuer porque internamente el contenedor de Flask accede al container de keycloak por keycloak:8080
+    # Y el usuario será redirigido a localhost:8080
+    "OAUTH2_ISSUER_INTERNAL": f"http://keycloak:8080/realms/myorg",
+    "OAUTH2_ISSUER_EXTERNAL": f"http://localhost:8080/realms/myorg",
+    # El issuer sin mas es el original
+    "OAUTH2_ISSUER": f"http://keycloak:8080/realms/myorg",
     "FLASK_SECRET": "ALongRandomlyGeneratedString",
     "FLASK_PORT": 3000
 }
@@ -27,7 +33,7 @@ oauth.register(
         "scope": "openid profile email",
         'code_challenge_method': 'S256'    # enable PKCE
     },
-    server_metadata_url=f'{appConf.get("OAUTH2_ISSUER")}/.well-known/openid-configuration'
+    server_metadata_url=f'{appConf.get("OAUTH2_ISSUER_INTERNAL")}/.well-known/openid-configuration'
 )
 
 
@@ -40,14 +46,14 @@ def login():
     # check if session already present
     if "user" in session:
         abort(404)
-    return oauth.myApp.authorize_redirect(redirect_uri=url_for("callback", _external=True))
+    return oauth.myApp.authorize_redirect(redirect_uri=appConf.get("OAUTH2_ISSUER_INTERNAL") + '/protocol/openid-connect/auth')
 
 @app.route("/logout")
 def logout():
     id_token = session["user"]["id_token"]
     session.clear()
     return redirect(
-        appConf.get("OAUTH2_ISSUER") + "/protocol/openid-connect/logout?"
+        appConf.get("OAUTH2_ISSUER_INTERNAL") + "/protocol/openid-connect/logout?"
             + urlencode(
             {
                 "post_logout_redirect_uri": url_for("loggedout", _external=True),

@@ -2,14 +2,19 @@ version: '3.8'
 
 services:
   flask:
-    image: flask
+    build:
+      context: ./Flask
+      dockerfile: Dockerfile
     ports:
       - '80:3000'
   keycloak:
     image: quay.io/keycloak/keycloak:23.0.4
-    command: start-dev
+    command: start-dev --import-realm
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
+    volumes:
+      - ./Keycloak:/opt/keycloak/data/import
     ports:
       - "8080:8080"
+    
