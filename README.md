@@ -49,7 +49,7 @@ In Login settings:
 
 In Client -> Credentials copy the Client Secret to confApp in ``app.py``
 
-### Flask 🐍
+### Flask 🌶️
 
 To install dependencies:
 
