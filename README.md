@@ -1,8 +1,19 @@
 # Flask Keycloak OIDC Application 🌐
 
+## Open ID Connect (OIDC)
+
+OpenID Connect (OIDC) protocol with Keycloak as the identity provider. OIDC is an authentication layer on top of OAuth 2.0, which allows clients to verify the identity of an end-user based on the authentication performed by an authorization server
+
+
 ## Description
 This project is a web application developed with Python's Flask, integrated with Keycloak for user authentication through the OpenID Connect (OIDC) protocol and the Authorization Code flow.
 It serves as an example for user authentication in an application using an Identity Provider like Keycloak or Okta, in this case using a Keycloak server to manage user identities.
+
+After the user logs in, the ID token data is displayed on screen.
+
+This project can be deployed using either two Virtual Machines or two containers with docker compose. The deployment using VMs involves more steps, such as creating a Realm in Keycloak and changing IP addresses within the code. On the other hand, docker compose simplifies the process by automatically setting up the Keycloak admin user and the Keycloak Realm to be used. However, docker compose only works on a Linux host OS due to the utillization of the host network type.
+
+This type of network is used because, among other reasons, using the default docker compose network, the Flask app redirects the user to the Keycloak container when the user doesn't have access to it. I have tried many to solve this to no avail, so the Host network type is used.
 
 ## Features 🔐
 - **Secure Authentication**🔐: Uses Keycloak to authenticate users, offering a robust layer of security and session management.
@@ -14,7 +25,7 @@ It serves as an example for user authentication in an application using an Ident
 - Flask 🌶️
 - Keycloak 🗝️
 
-## Installation and Configuration 🛠️
+## Installation and Configuration in two machines (VMs) 🛠️
 
 ### Keycloak 🗝️
 
@@ -58,3 +69,25 @@ To install dependencies:
 To deploy:
 
 - python3 app.py
+
+## Deployment with Docker Compose 🐳
+
+Deploy both Flask and Keycloak containers using the following command
+
+```docker compose up --build```
+
+After the containers are running, you can verify the deployment by accesing 
+
+- Flask WebApp: ```localhost:80```
+
+- Keycloak server: ```localhost:8080```
+
+### Shutting down
+
+To stop and remove the containers, use the following command: 
+
+```docker compose down```
+
+## Images
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
