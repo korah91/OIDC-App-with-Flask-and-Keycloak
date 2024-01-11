@@ -4,6 +4,10 @@
 
 OpenID Connect (OIDC) protocol with Keycloak as the identity provider. OIDC is an authentication layer on top of OAuth 2.0, which allows clients to verify the identity of an end-user based on the authentication performed by an authorization server
 
+## Demo
+![alt text](https://github.com/korah91/Flask_Keycloak_Web_App/blob/main/images/demo_gif.gif "Demo")
+
+
 
 ## Description
 This project is a web application developed with Python's Flask, integrated with Keycloak for user authentication through the OpenID Connect (OIDC) protocol and the Authorization Code flow.
@@ -88,6 +92,4 @@ To stop and remove the containers, use the following command:
 
 ```docker compose down```
 
-## Demo
-![alt text](https://github.com/korah91/Flask_Keycloak_Web_App/blob/main/images/demo_gif.gif "Demo")
 
