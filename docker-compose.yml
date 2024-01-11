@@ -1,14 +1,14 @@
 version: '3.8'
 
 services:
-  flask:
+  flask:  #192.168.2 poner dos interfaces
     build:
       context: ./Flask
       dockerfile: Dockerfile
     ports:
       - '80:3000'
     network_mode: host
-  keycloak:
+  keycloak: #192.168.3 poner dos interfaces
     image: quay.io/keycloak/keycloak:23.0.4
     command: start-dev --import-realm
     environment:
@@ -19,3 +19,6 @@ services:
     ports:
       - "8080:8080"
     network_mode: host
+
+# Alberto me ha dado la idea de usar dos interfaces para cada container.
+
