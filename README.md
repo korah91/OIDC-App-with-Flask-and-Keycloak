@@ -89,5 +89,5 @@ To stop and remove the containers, use the following command:
 ```docker compose down```
 
 ## Images
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/korah91/Flask_Keycloak_Web_App/blob/main/images/demo_gif.gif "Demo")
 
