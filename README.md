@@ -14,6 +14,10 @@ This project is a web application developed with Python's Flask, integrated with
 It serves as an example for user authentication in an application using an Identity Provider like Keycloak or Okta, in this case using a Keycloak server to manage user identities.
 
 After the user logs in, the ID token data is displayed on screen.
+- Their Email, Name
+- Access Token
+- Refresh Token
+- Access Token expiration
 
 This project can be deployed using either two Virtual Machines or two containers with docker compose. The deployment using VMs involves more steps, such as creating a Realm in Keycloak and changing IP addresses within the code. On the other hand, docker compose simplifies the process by automatically setting up the Keycloak admin user and the Keycloak Realm to be used. However, docker compose only works on a Linux host OS due to the utillization of the host network type.
 
