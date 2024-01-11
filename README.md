@@ -88,6 +88,6 @@ To stop and remove the containers, use the following command:
 
 ```docker compose down```
 
-## Images
+## Demo
 ![alt text](https://github.com/korah91/Flask_Keycloak_Web_App/blob/main/images/demo_gif.gif "Demo")
 
