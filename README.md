@@ -1,4 +1,4 @@
-# Flask Keycloak OIDC Application 🌐
+# OIDC App with Flask and Keycloak  🌐
 
 
 ## Demo
