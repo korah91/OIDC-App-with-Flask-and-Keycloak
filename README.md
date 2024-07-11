@@ -1,8 +1,5 @@
 # Flask Keycloak OIDC Application 🌐
 
-## Open ID Connect (OIDC)
-
-OpenID Connect (OIDC) protocol with Keycloak as the identity provider. OIDC is an authentication layer on top of OAuth 2.0, which allows clients to verify the identity of an end-user based on the authentication performed by an authorization server
 
 ## Demo
 ![alt text](https://github.com/korah91/Flask_Keycloak_Web_App/blob/main/images/demo_gif.gif "Demo")
@@ -19,9 +16,11 @@ After the user logs in, the ID token data is displayed on screen.
 - Refresh Token
 - Access Token expiration
 
-This project can be deployed using either two Virtual Machines or two containers with docker compose. The deployment using VMs involves more steps, such as creating a Realm in Keycloak and changing IP addresses within the code. On the other hand, docker compose simplifies the process by automatically setting up the Keycloak admin user and the Keycloak Realm to be used. However, docker compose only works on a Linux host OS due to the utillization of the host network type.
+This project can be deployed using either two Virtual Machines or two containers with docker compose. The deployment using VMs involves more steps, such as creating a Realm in Keycloak and changing IP addresses within the code. On the other hand, docker compose simplifies the process by automatically setting up the Keycloak admin user and the Keycloak Realm to be used. However, docker compose only works on a Linux host OS due to the utilization of the host network type.
 
 This type of network is used because, among other reasons, using the default docker compose network, the Flask app redirects the user to the Keycloak container when the user doesn't have access to it. I have tried many to solve this to no avail, so the Host network type is used.
+
+The docker compose file automatically mounts the Keycloak folder to the Keycloak container's realm import folder, so it imports the realm stored in the json. For example myorg-realm.json
 
 ## Features 🔐
 - **Secure Authentication**🔐: Uses Keycloak to authenticate users, offering a robust layer of security and session management.
